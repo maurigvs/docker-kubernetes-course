@@ -34,6 +34,18 @@ services:
     depends_on:
       - mongodb
 
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - 3000:3000
+# Both commands stands for "-it"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+
 volumes:
   data:
   logs:
