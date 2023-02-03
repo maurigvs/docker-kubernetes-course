@@ -36,6 +36,8 @@ services:
 
   frontend:
     build: ./frontend
+# Force a name on a container
+#   container_name: frontend
     volumes:
       - ./frontend/src:/app/src
     ports:
