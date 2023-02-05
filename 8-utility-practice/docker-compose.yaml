@@ -6,8 +6,17 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  #php:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro # "read-only" prevents the files to be changed at any moment
+  
+  php:
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+    volumes:
+      - ./src:/var/www/html:delegated # "delegated" improves performance in the reflection of changes in the container and vice-versa
+    # Only necessary when application needs to be accessed from outside the docker network (localhost)
+    #ports:
+    #  - "3000:9000"
   #mysql:
   #composer:
   #artisan:
