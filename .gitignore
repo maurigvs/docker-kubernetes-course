@@ -1,5 +1,5 @@
-./7-utility-containers/node_modules
-./7-utility-containers/package.json
-./7-utility-containers/package-lock.json
+7-utility-containers/node_modules/
+7-utility-containers/package.json
+7-utility-containers/package-lock.json
 
-./8-utility-practice/src
+8-utility-practice/src/
