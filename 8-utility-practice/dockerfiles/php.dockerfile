@@ -5,3 +5,7 @@ WORKDIR /var/www/html
 RUN docker-php-ext-install pdo pdo_mysql
 
 # In this case, the end-command of the baseImage will be used, instead of the end-command in the Dockerfile
+
+RUN addgroup -g 1000 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
+ 
+USER laravel
