@@ -19,10 +19,10 @@ services:
   
   php:
     build:
-      context: ./dockerfiles
-      dockerfile: php.dockerfile
-    volumes: 
-      - ./src:/var/www/html:delegated # "delegated" improves performance in the reflection of changes in the container and vice-versa
+      context: .
+      dockerfile: dockerfiles/php.dockerfile
+    #volumes: 
+    #  - ./src:/var/www/html:delegated # "delegated" improves performance in the reflection of changes in the container and vice-versa
     # Only necessary when application needs to be accessed from outside the docker network (localhost)
     #ports:
     #  - "3000:9000"
