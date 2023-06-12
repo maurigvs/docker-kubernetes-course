@@ -24,10 +24,10 @@ minikube service first-app
 -- RESTARTING CONTAINERS
 
 http://192.168.49.2:30896/error
-kubeclt get pods
+kubectl get pods
 
 http://192.168.49.2:30896
-kubeclt get pods
+kubectl get pods
 
 - SCALING
 
