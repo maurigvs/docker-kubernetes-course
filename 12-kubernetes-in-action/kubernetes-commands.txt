@@ -98,3 +98,11 @@ kubectl get deployment
  kubectl apply -f service.yaml
  minikube service backend
  kubectl get services
+
+ -- UPDATING AND DELETING RESOURCES
+
+after changes de yaml files:
+kubectl apply -f deployment.yaml 
+
+kubectl delete -f=deployment.yaml,service.yaml
+kubectl delete -f=deployment.yaml -f=service.yaml

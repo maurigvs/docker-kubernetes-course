@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: second-app-deployment
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: second-app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: second-node
-        image: maurigvs/kub-first-app
+        image: maurigvs/kub-first-app:2
         resources:
           limits:
             memory: "128Mi"
