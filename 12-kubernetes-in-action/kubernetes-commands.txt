@@ -1,0 +1,100 @@
+-- DEPLOYMENTS
+
+docker tag kub-first-app maurigvs/kub-first-app
+docker login
+docker push maurigvs/kub-first-app
+
+- create a deployment and sends to the cluster
+kubectl create deployment first-app --image=maurigvs/kub-first-app
+
+kubectl get deployments
+kubectl get pods
+
+-- SERVICES
+
+to reach a pod we need a service
+services groups pods with a shared IP
+
+types=ClusterIP or NodePort or LoadBalancer
+
+kubectl expose deployment first-app --type=LoadBalancer --port=8080 
+kubectl get services
+minikube service first-app
+
+-- RESTARTING CONTAINERS
+
+http://192.168.49.2:30896/error
+kubeclt get pods
+
+http://192.168.49.2:30896
+kubeclt get pods
+
+- SCALING
+
+kubectl scale deployment/first-app --replicas=3
+kubectl get pods
+kubectl scale deployment/first-app --replicas=1
+
+- UPDATING
+
+images are only updates if they have different tags
+
+** changes source code
+docker build -t maurigvs/kub-first-app:2 .
+docker push maurigvs/kub-first-app:2
+
+kubectl set image deployment/first-app kub-first-app=maurigvs/kub-first-app:2
+kubectl get deployments
+kubectl rollout status deployment/first-app
+
+-- ROLLBACK AND HISTORY
+
+- will cause error (wrong tag)
+kubectl set image deployment/first-app kub-first-app=maurigvs/kub-first-app:3 
+
+- status
+kubectl rollout status deployment/first-app
+
+- rollback to the previous revision
+kubectl rollout undo deployment/first-app
+
+- revision history
+kubectl rollout history deployment/first-app --revision
+
+- info about a specific revision
+kubectl rollout history deployment/first-app --revision 3
+
+- rollback to a specific revision
+kubectl rollout undo deployment/first-app --to-revision=1
+
+- Switching to declarative approach
+
+kubectl delete service first-app
+kubectl delete deployment first-app
+kubectl get pods
+kubectl get deployments
+
+-- IMPERATIVE vS DECLARATIVE approach
+
+Imperative: Individual commands are executed to trigger certain actions (comparable to docker run)
+Declarative: A config file is defined and applied to change the desired state (comparable to docker compose)
+
+- DEPLOYMENT CONFIGURATION file
+
+https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config/
+
+- deployment spec
+https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/
+
+touch deployment.yaml
+code deployment.yaml 
+kubectl apply -f=deployment.yaml
+kubectl get deployment
+
+- SERVICE CONFIGURATION
+
+ touch service.yaml
+ code service.yaml 
+ kubectl apply -f service.yaml
+ minikube service backend
+ kubectl get services
