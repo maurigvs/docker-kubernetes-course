@@ -106,3 +106,15 @@ kubectl apply -f deployment.yaml
 
 kubectl delete -f=deployment.yaml,service.yaml
 kubectl delete -f=deployment.yaml -f=service.yaml
+
+-- MERGING CONFIG FILES
+
+new file master-deployment.yaml
+service before deployment
+separated by "---"
+
+kubectl delete -f=deployment.yaml -f=service.yaml
+kubectl apply -f=master-deployment.yaml
+kubectl get deployment
+kubectl get services
+minikube service backend
