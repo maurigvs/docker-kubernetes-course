@@ -118,3 +118,21 @@ kubectl apply -f=master-deployment.yaml
 kubectl get deployment
 kubectl get services
 minikube service backend
+
+-- LABELS AND SELECTORS
+
+matchLabels can be replaced by matchExpressions and take advantage of "operator":
+
+matchLabels:
+    app: second-app
+    tier: backend
+
+matchExpressions:
+    - {key: app, operator: In, values: [second-app, first-app]}
+
+delete resources by selector:
+
+code deployment.yaml : add labels:group:example in metadata
+kubectl apply -f=deployment.yaml -f=service.yaml
+
+kubectl delete deployments,services -l group=example
