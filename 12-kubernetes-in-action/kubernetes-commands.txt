@@ -136,3 +136,21 @@ code deployment.yaml : add labels:group:example in metadata
 kubectl apply -f=deployment.yaml -f=service.yaml
 
 kubectl delete deployments,services -l group=example
+
+--- Procedimento de Restore:
+
+minikube start
+kubectl apply -f=master-deployment.yaml
+
+-- LIVENESSPROBE
+
+adicionado ao deployment;yaml:
+
+    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#probe-v1-core
+livenessProbe:
+    httpGet:
+        path: /
+        port: 8080
+
+kubectl apply -f=deployment.yaml -f=service.yaml
+minikube service backend
