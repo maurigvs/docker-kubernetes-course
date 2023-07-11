@@ -1,0 +1,10 @@
+208 - Introdução
+
+Regular Volumes
+Persistent Volumes
+Persistente Volume Claims
+Environment Variables
+
+209 - Exemplo com docker-compose 
+
+docker compose up -d --build
