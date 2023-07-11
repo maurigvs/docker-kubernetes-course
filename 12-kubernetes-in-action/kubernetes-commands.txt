@@ -146,7 +146,7 @@ kubectl apply -f=master-deployment.yaml
 
 adicionado ao deployment;yaml:
 
-    # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#probe-v1-core
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#probe-v1-core
 livenessProbe:
     httpGet:
         path: /

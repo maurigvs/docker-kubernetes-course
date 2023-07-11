@@ -22,7 +22,6 @@ spec:
       - name: second-node
         image: maurigvs/kub-first-app:latest
         imagePullPolicy: Always
-        # https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#probe-v1-core
         livenessProbe:
           httpGet:
             path: /
