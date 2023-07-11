@@ -142,7 +142,7 @@ kubectl delete deployments,services -l group=example
 minikube start
 kubectl apply -f=master-deployment.yaml
 
--- LIVENESSPROBE
+-- 204. LIVENESSPROBE
 
 adicionado ao deployment;yaml:
 
@@ -154,3 +154,11 @@ livenessProbe:
 
 kubectl apply -f=deployment.yaml -f=service.yaml
 minikube service backend
+
+-- 205. CONFIGURATIONS OPTIONS
+
+minikube start
+docker build -t maurigvs/kub-first-app:latest .
+docker push maurigvs/kub-first-app:latest 
+kubectl apply -f=deployment.yaml
+kubectl apply -f=service.yaml
