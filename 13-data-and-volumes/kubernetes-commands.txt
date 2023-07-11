@@ -8,3 +8,13 @@ Environment Variables
 209 - Exemplo com docker-compose 
 
 docker compose up -d --build
+
+210 - kubernetes volumes
+
+volumes são usados para persistir dados de container restartados.
+
+211 - teoria e comparação com docker
+
+tempo de vida dos volumes depende do tempo de visa dos Pods
+sobrevive a restart/remove de containers
+são removidos quando pods são destruídos
