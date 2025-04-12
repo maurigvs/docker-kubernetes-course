@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: survey-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [survey-api-dev]}
+      - {key: tier, operator: In, values: [backend]}
+  template:
+    metadata:
+      labels:
+        app: survey-api-dev
+        tier: backend
+    spec:
+      containers:
+      - name: survey-api
+        image: maurigvs/kub-first-app:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          periodSeconds: 3
+          initialDelaySeconds: 5
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
