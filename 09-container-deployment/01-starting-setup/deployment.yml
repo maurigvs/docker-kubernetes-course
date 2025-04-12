@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: survey-api
-        image: maurigvs/kub-first-app:v2
+        image: maurigvs/kub-first-app:latest
+        imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /
