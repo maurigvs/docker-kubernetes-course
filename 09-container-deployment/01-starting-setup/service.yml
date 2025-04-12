@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: survey-api-dev
+    tier: backend
+  ports:
+  - protocol: 'TCP'
+    port: 80              # external port
+    targetPort: 8080      # internal port
+  type: LoadBalancer      # Other optionls: ClusterIP, NodePort

@@ -7,10 +7,12 @@ spec:
   selector:
     matchLabels:
       app: survey-api-dev
+      tier: backend
   template:
     metadata:
       labels:
         app: survey-api-dev
+        tier: backend
     spec:
       containers:
       - name: survey-api
