@@ -5,9 +5,9 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
-      app: survey-api-dev
-      tier: backend
+    matchExpressions:
+      - {key: app, operator: In, values: [survey-api-dev]}
+      - {key: tier, operator: In, values: [backend]}
   template:
     metadata:
       labels:
@@ -17,6 +17,12 @@ spec:
       containers:
       - name: survey-api
         image: maurigvs/kub-first-app:v2
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          periodSeconds: 3
+          initialDelaySeconds: 5
         resources:
           limits:
             memory: "128Mi"
