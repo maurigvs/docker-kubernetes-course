@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: survey-api
-        image: maurigvs/survey-api:latest
+        image: maurigvs/kub-first-app:v2
         resources:
           limits:
             memory: "128Mi"
